@@ -15,15 +15,20 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag py-image-name:$(date +%s)
+      run: docker build . --file Dockerfile --tag py-image-name:latest
     - name: Docker Login
   # You may pin to the exact commit or the version.
   # uses: docker/login-action@465a07811f14bebb1938fbed4728c6a1ff8901fc
       uses: docker/login-action@v2.2.0
       with:
     # Username used to log against the Docker registry
-        username: $DOCKERHUB_USERNAME
+        username: ${{DOCKERHUB_USERNAME}}
     # Password or personal access token used to log against the Docker registry
-        password: $DOCKERHUB_TOKEN
+        password: ${{DOCKERHUB_TOKEN}}
     # Specifies whether the given registry is ECR (auto, true or false)
+    - name: tag the image
+      run: docker py-image-name:latest py-image-dh:latest
+    - name: Push to docker hub
+      run: docker push py-image-dh:latest
+    
     
