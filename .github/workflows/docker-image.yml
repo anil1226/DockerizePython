@@ -27,8 +27,8 @@ jobs:
         password: ${{secrets.DOCKERHUB_TOKEN}}
     # Specifies whether the given registry is ECR (auto, true or false)
     - name: tag the image
-      run: docker tag py-image-name:1.0 py-image-dh:1.0
+      run: docker tag py-image-name:1.0 anil1226/py-image-dh:1.0
     - name: Push to docker hub
-      run: docker push py-image-dh:1.0
+      run: docker push anil1226/py-image-dh:1.0
     
     
