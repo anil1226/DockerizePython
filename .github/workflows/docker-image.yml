@@ -15,7 +15,7 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag py-image-name:latest
+      run: docker build . --file Dockerfile --tag py-image-name:1.0
     - name: Docker Login
   # You may pin to the exact commit or the version.
   # uses: docker/login-action@465a07811f14bebb1938fbed4728c6a1ff8901fc
@@ -27,8 +27,8 @@ jobs:
         password: ${{secrets.DOCKERHUB_TOKEN}}
     # Specifies whether the given registry is ECR (auto, true or false)
     - name: tag the image
-      run: docker py-image-name:latest py-image-dh:latest
+      run: docker tag py-image-name:1.0 py-image-dh:1.0
     - name: Push to docker hub
-      run: docker push py-image-dh:latest
+      run: docker push py-image-dh:1.0
     
     
